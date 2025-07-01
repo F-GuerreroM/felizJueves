@@ -18,10 +18,14 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "public",
+                "output": "/assets/"
+              },
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "server": "src/main.server.ts",
@@ -86,5 +90,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "e85f94fc-a42a-4391-9322-9147a97a5db9"
   }
 }

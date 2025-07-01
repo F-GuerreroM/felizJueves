@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { HeaderComponent } from './components/header/header';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [HeaderComponent, RouterOutlet],
 })
-export class App {
-  protected title = 'felizJueves';
-}
+export class App {}
