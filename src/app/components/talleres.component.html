@@ -1,0 +1,11 @@
+<h1>Listado de Talleres</h1>
+
+<ul *ngIf="talleres.length > 0; else cargando">
+  <li *ngFor="let taller of talleres">
+    <strong>{{ taller.nombre }}</strong> - Categoría: {{ taller.categoria }} - Cupos: {{ taller.cupos }}
+  </li>
+</ul>
+
+<ng-template #cargando>
+  <p>Cargando talleres...</p>
+</ng-template>

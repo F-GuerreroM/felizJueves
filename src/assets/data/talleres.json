@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Taller de Programación",
+    "categoria": "Tecnología",
+    "cupos": 20
+  },
+  {
+    "id": 2,
+    "nombre": "Taller de Diseño",
+    "categoria": "Creatividad",
+    "cupos": 15
+  },
+  {
+    "id": 3,
+    "nombre": "Taller de Dibujo Manga",
+    "categoria": "Arte",
+    "cupos": 25
+  }
+]
