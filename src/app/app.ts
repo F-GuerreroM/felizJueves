@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core'; // <--- Importamos Inject y PLATFORM_ID
+import { CommonModule, isPlatformBrowser } from '@angular/common'; // <--- Importamos isPlatformBrowser
 import { HeaderComponent } from './components/header/header';
 import { RouterOutlet } from '@angular/router';
 
@@ -6,13 +7,19 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.html',
-  imports: [HeaderComponent, RouterOutlet],
+  imports: [HeaderComponent, RouterOutlet, CommonModule],
 })
 export class App implements OnInit {
   talleres: any[] = [];
 
+  // 1. Inyectamos el identificador de la plataforma
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
   ngOnInit(): void {
-    this.cargarTalleres();
+    // 2. EL TRUCO: Solo ejecutamos esto si es el NAVEGADOR
+    if (isPlatformBrowser(this.platformId)) {
+      this.cargarTalleres();
+    }
   }
 
   cargarTalleres() {

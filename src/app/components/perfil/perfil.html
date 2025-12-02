@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="card shadow mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">👤 Mi Perfil</h4>
+      <a routerLink="/menu" class="btn btn-sm btn-light text-primary fw-bold">Volver al Menú</a>
+    </div>
+    <div class="card-body text-center">
+      <img src="https://ui-avatars.com/api/?name=Otaku+Master&background=random&size=128" 
+           class="rounded-circle mb-3 shadow-sm" alt="Avatar">
+      
+      <h3 class="card-title">{{ usuario.nombre }}</h3>
+      <span class="badge bg-warning text-dark mb-4">{{ usuario.nivel }}</span>
+
+      <ul class="list-group list-group-flush text-start">
+        <li class="list-group-item"><strong>📧 Email:</strong> {{ usuario.email }}</li>
+        <li class="list-group-item"><strong>📅 Miembro desde:</strong> {{ usuario.fechaRegistro }}</li>
+        <li class="list-group-item"><strong>📍 Ubicación:</strong> Santiago, Chile</li>
+      </ul>
+
+      <div class="d-grid gap-2 mt-4">
+        <button class="btn btn-outline-primary">✏️ Editar Datos</button>
+        <button class="btn btn-danger" (click)="cerrarSesion()">🚪 Cerrar Sesión</button>
+      </div>
+    </div>
+  </div>
+</div>

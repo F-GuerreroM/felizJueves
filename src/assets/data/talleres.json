@@ -1,20 +1,30 @@
 [
   {
-    "id": 1,
-    "nombre": "Taller de Programación",
-    "categoria": "Tecnología",
-    "cupos": 20
+    "titulo": "Reunión Semanal de Anime",
+    "descripcion": "Ven a discutir los episodios de la semana y compartir teorías.",
+    "lugar": "Parque Central, Zona Otaku",
+    "hora": "Sábado 16:00 hrs",
+    "img": "assets/img/reuniones.png"
   },
   {
-    "id": 2,
-    "nombre": "Taller de Diseño",
-    "categoria": "Creatividad",
-    "cupos": 15
+    "titulo": "Taller de Cosplay: Armaduras",
+    "descripcion": "Aprende a trabajar con goma eva y pintura para tus props.",
+    "lugar": "Centro Cultural Sala 2",
+    "hora": "Domingo 10:00 hrs",
+    "img": "assets/img/cosplay.jpg"
   },
   {
-    "id": 3,
-    "nombre": "Taller de Dibujo Manga",
-    "categoria": "Arte",
-    "cupos": 25
+    "titulo": "Torneo Yu-Gi-Oh! Principiantes",
+    "descripcion": "Trae tu deck y participa. Premios para los 3 primeros lugares.",
+    "lugar": "Tienda Magia y Cartas",
+    "hora": "Viernes 18:00 hrs",
+    "img": "assets/img/tcg.webp"
+  },
+  {
+    "titulo": "Intercambio de Mangas",
+    "descripcion": "Trae los tomos que ya leíste y cámbialos por nuevos.",
+    "lugar": "Cafetería Akihabara",
+    "hora": "Jueves 17:30 hrs",
+    "img": "assets/img/ventas.png"
   }
 ]

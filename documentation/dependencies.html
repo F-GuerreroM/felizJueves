@@ -61,6 +61,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -96,6 +110,10 @@
 
 
 
+
+
+
+
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Dependencies</li>
     </ol>
@@ -111,13 +129,15 @@
         <li>
             <b>@angular/platform-browser</b> : ^20.0.0</li>
         <li>
+            <b>@angular/platform-browser-dynamic</b> : ^20.0.5</li>
+        <li>
             <b>@angular/platform-server</b> : ^20.0.0</li>
         <li>
             <b>@angular/router</b> : ^20.0.5</li>
         <li>
             <b>@angular/ssr</b> : ^20.0.4</li>
         <li>
-            <b>bootstrap</b> : ^5.3.7</li>
+            <b>bootstrap</b> : ^5.3.8</li>
         <li>
             <b>express</b> : ^5.1.0</li>
         <li>

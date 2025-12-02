@@ -1,29 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common'; 
+import { RouterLink } from '@angular/router'; 
 
 @Component({
   selector: 'app-talleres',
-  templateUrl: './talleres.component.html',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink], 
+  templateUrl: './talleres.component.html',
+  styleUrls: ['./talleres.component.css'] 
 })
 export class TalleresComponent implements OnInit {
-  talleres: any[] = [];
-  errorMsg = '';
+  listaTalleres: any[] = [];
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    fetch('assets/data/talleres.json')
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
+    
+    if (isPlatformBrowser(this.platformId)) {
+      this.cargarDatos();
+    }
+  }
+
+cargarDatos() {
+    
+    fetch('assets/data/talleres.json') 
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('No se encontró el archivo JSON');
+        }
+        return response.json();
       })
       .then(data => {
-        console.log('Datos recibidos:', data);
-        this.talleres = data;
+        this.listaTalleres = data;
+        console.log('Datos cargados:', this.listaTalleres);
       })
-      .catch(err => {
-        this.errorMsg = err.message;
-        console.error('Error al cargar talleres:', err);
-      });
+      .catch(error => console.error('Error cargando talleres:', error));
   }
 }

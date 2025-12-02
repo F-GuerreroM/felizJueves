@@ -1,7 +1,38 @@
-<header class="bg-dark text-white text-center py-5">
-  <div class="overlay-text">
-    <h1>¡Feliz Jueves!</h1>
-    <p class="lead">Tu página por otakus para otakus</p>
-    <p class="fst-italic">Reuniones, cosplays, ventas, TCG, y más</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/menu">
+      🌸 Feliz Jueves
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/menu" routerLinkActive="active">Inicio</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/talleres" routerLinkActive="active">Talleres</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/perfil" routerLinkActive="active">Mi Perfil</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/registro" routerLinkActive="active">Registro</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="btn btn-primary ms-2" routerLink="/login">Iniciar Sesión</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</header>
+</nav>

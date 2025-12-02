@@ -1,56 +1,65 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Para *ngIf
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'; // <--- LO QUE PIDE LA PAUTA
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterLink], 
   templateUrl: './registro.html',
-  imports: [FormsModule, CommonModule],
+  styleUrls: ['./registro.css']
 })
 export class RegistroComponent {
-  nombre: string = '';
-  correo: string = '';
-  usuario: string = '';
-  clave: string = '';
-  clave2: string = '';
+  registroForm: FormGroup;
 
-  errores: string[] = [];
+  constructor(private fb: FormBuilder, private router: Router) {
+    // Definición del Formulario Reactivo con todas las validaciones
+    this.registroForm = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]], // Valida formato email
+      // Regex compleja: Mayúscula, minúscula, número, caracter especial, 8-20 chars
+      clave: ['', [
+        Validators.required, 
+        Validators.minLength(8),
+        Validators.maxLength(20),
+        Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/)
+      ]],
+      confirmClave: ['', [Validators.required]]
+    }, { validators: this.passwordMatchValidator });
+  }
 
-  onSubmit(form: NgForm) {
-    this.errores = [];
+  // Getter para usar 'f.nombre' en el HTML más fácil
+  get f() { return this.registroForm.controls; }
 
-    if (!form.valid) {
-      alert('Por favor, complete todos los campos.');
-      return;
+  // Validador personalizado para que coincidan las claves
+  passwordMatchValidator(form: AbstractControl) {
+    return form.get('clave')?.value === form.get('confirmClave')?.value 
+      ? null : { mismatch: true };
+  }
+
+  onSubmit() {
+    if (this.registroForm.invalid) {
+      return; // Si no es válido, no hace nada (los mensajes ya se muestran en HTML)
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(this.correo)) {
-      alert('Ingrese un correo electrónico válido.');
-      return;
-    }
+    // 1. Obtener los datos del formulario
+    const nuevoUsuario = {
+      id: Date.now(), // Generamos un ID único basado en la fecha
+      nombre: this.registroForm.value.nombre,
+      email: this.registroForm.value.email,
+      rol: 'Usuario' // Por defecto todos son usuarios normales
+    };
 
-    if (this.clave.length < 8) this.errores.push('Debe tener al menos 8 caracteres.');
-    if (this.clave.length > 20) this.errores.push('No debe exceder los 20 caracteres.');
-    if (!/[A-Z]/.test(this.clave)) this.errores.push('Debe incluir al menos una letra mayúscula.');
-    if (!/[a-z]/.test(this.clave)) this.errores.push('Debe incluir al menos una letra minúscula.');
-    if (!/\d/.test(this.clave)) this.errores.push('Debe incluir al menos un número.');
-    if (!/[^A-Za-z0-9]/.test(this.clave)) this.errores.push('Debe incluir al menos un carácter especial.');
-    if (this.clave !== this.clave2) this.errores.push('Las contraseñas no coinciden.');
+    // 2. "PASADO DE DATOS": Guardar en localStorage para que el Admin lo vea
+    // Primero leemos si ya hay usuarios guardados
+    const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    // Agregamos el nuevo
+    usuariosGuardados.push(nuevoUsuario);
+    // Guardamos la lista actualizada
+    localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
 
-    if (this.errores.length > 0) {
-      alert('Error en la contraseña:\n- ' + this.errores.join('\n- '));
-      return;
-    }
-
-    alert('¡Registro exitoso! Bienvenido a ¡Feliz Jueves!');
-
-    // Simula redirección
-    setTimeout(() => {
-      window.location.href = '/menu.html';
-    }, 500);
-
-    form.resetForm();
+    alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+    this.router.navigate(['/login']);
   }
 }

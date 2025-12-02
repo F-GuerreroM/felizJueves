@@ -61,6 +61,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -81,6 +95,10 @@
                <!-- START CONTENT -->
                <div class="content coverage">
                    <div class="content-data">
+
+
+
+
 
 
 
@@ -169,10 +187,10 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/App.html">src/app/app.ts</a>
+                        <a href="./miscellaneous/variables.html#routes">src/app/app.routes.ts</a>
             </td>
-            <td>component</td>
-            <td>App</td>
+            <td>variable</td>
+            <td>routes</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
@@ -181,7 +199,31 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/Footer.html">src/app/components/footer/footer.ts</a>
+                        <a href="./components/App.html">src/app/app.ts</a>
+            </td>
+            <td>component</td>
+            <td>App</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./components/AdminComponent.html">src/app/components/admin/admin.ts</a>
+            </td>
+            <td>component</td>
+            <td>AdminComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./components/Footer.html">src/app/components/footer/footer.ts</a>
             </td>
             <td>component</td>
             <td>Footer</td>
@@ -193,7 +235,7 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/HeaderComponent.html">src/app/components/header/header.ts</a>
+                        <a href="./components/HeaderComponent.html">src/app/components/header/header.ts</a>
             </td>
             <td>component</td>
             <td>HeaderComponent</td>
@@ -205,31 +247,55 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/LoginComponent.html">src/app/components/login/login.ts</a>
+                        <a href="./components/LoginComponent.html">src/app/components/login/login.ts</a>
             </td>
             <td>component</td>
             <td>LoginComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/6)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/MenuComponent.html">src/app/components/menu/menu.ts</a>
+                        <a href="./components/MenuComponent.html">src/app/components/menu/menu.ts</a>
             </td>
             <td>component</td>
             <td>MenuComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
+                <span class="coverage-count">(0/2)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/RecuperaComponent.html">src/app/components/recupera/recupera.ts</a>
+                        <a href="./components/PerfilComponent.html">src/app/components/perfil/perfil.ts</a>
+            </td>
+            <td>component</td>
+            <td>PerfilComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./components/RecoverComponent.html">src/app/components/recover/recover.ts</a>
+            </td>
+            <td>component</td>
+            <td>RecoverComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                        <a href="./components/RecuperaComponent.html">src/app/components/recupera/recupera.ts</a>
             </td>
             <td>component</td>
             <td>RecuperaComponent</td>
@@ -241,73 +307,25 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/RegistroComponent.html">src/app/components/registro/registro.ts</a>
+                        <a href="./components/RegistroComponent.html">src/app/components/registro/registro.ts</a>
             </td>
             <td>component</td>
             <td>RegistroComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/8)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#bootstrap">src/main.server.ts</a>
+                        <a href="./components/TalleresComponent.html">src/app/components/talleres.component.ts</a>
             </td>
-            <td>variable</td>
-            <td>bootstrap</td>
+            <td>component</td>
+            <td>TalleresComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#angularApp">src/server.ts</a>
-            </td>
-            <td>variable</td>
-            <td>angularApp</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#app">src/server.ts</a>
-            </td>
-            <td>variable</td>
-            <td>app</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#browserDistFolder">src/server.ts</a>
-            </td>
-            <td>variable</td>
-            <td>browserDistFolder</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="very-good">
-            <td>
-                <!-- miscellaneous -->
-                        <a href="./miscellaneous/variables.html#reqHandler">src/server.ts</a>
-            </td>
-            <td>variable</td>
-            <td>reqHandler</td>
-            <td align="right" data-sort="100">
-                <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(1/1)</span>
+                <span class="coverage-count">(0/5)</span>
             </td>
         </tr>
     </tbody>

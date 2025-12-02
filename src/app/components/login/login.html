@@ -1,40 +1,42 @@
-<div class="login-container bg-light p-4 rounded shadow mx-auto" style="max-width: 400px;">
+<div class="login-container bg-light p-4 rounded shadow mx-auto mt-5" style="max-width: 400px;">
   <h2 class="text-center mb-4">Iniciar Sesión</h2>
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>
-    <label for="usuario" class="form-label">Usuario:</label>
-    <input
-      type="text"
-      id="usuario"
-      name="usuario"
-      class="form-control"
-      [(ngModel)]="usuario"
-      required
-      minlength="3"
-      #usuarioInput="ngModel"
-    />
-    <div *ngIf="usuarioInput.invalid && usuarioInput.touched" class="text-danger small">
-      El usuario es obligatorio y debe tener al menos 3 caracteres.
+  
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    
+    <div class="mb-3">
+      <label for="usuario" class="form-label">Usuario:</label>
+      <input 
+        type="text" 
+        id="usuario" 
+        class="form-control"
+        formControlName="usuario" 
+        [class.is-invalid]="f['usuario'].invalid && f['usuario'].touched"
+      />
+      <div *ngIf="f['usuario'].invalid && f['usuario'].touched" class="text-danger small">
+        <div *ngIf="f['usuario'].errors?.['required']">El usuario es obligatorio.</div>
+        <div *ngIf="f['usuario'].errors?.['minlength']">Mínimo 3 caracteres.</div>
+      </div>
     </div>
 
-    <label for="clave" class="form-label mt-3">Contraseña:</label>
-    <input
-      type="password"
-      id="clave"
-      name="clave"
-      class="form-control"
-      [(ngModel)]="clave"
-      required
-      #claveInput="ngModel"
-    />
-    <div *ngIf="claveInput.invalid && claveInput.touched" class="text-danger small">
-      La contraseña es obligatoria.
+    <div class="mb-3">
+      <label for="clave" class="form-label">Contraseña:</label>
+      <input 
+        type="password" 
+        id="clave" 
+        class="form-control"
+        formControlName="clave"
+        [class.is-invalid]="f['clave'].invalid && f['clave'].touched"
+      />
+      <div *ngIf="f['clave'].invalid && f['clave'].touched" class="text-danger small">
+        La contraseña es obligatoria.
+      </div>
     </div>
 
     <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{ errorMsg }}</div>
 
     <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="loginForm.invalid">Entrar</button>
 
-     <p class="mt-3 text-center">
+    <p class="mt-3 text-center">
       <a routerLink="/recupera">¿Olvidaste tu contraseña?</a><br>
       <a routerLink="/registro">¿No tienes cuenta? Regístrate aquí</a>
     </p>

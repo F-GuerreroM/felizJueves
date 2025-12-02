@@ -1,11 +1,30 @@
-<h1>Listado de Talleres</h1>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>📅 Próximas Reuniones y Talleres</h2>
+    <a routerLink="/menu" class="btn btn-secondary">⬅ Volver al Menú</a>
+  </div>
 
-<ul *ngIf="talleres.length > 0; else cargando">
-  <li *ngFor="let taller of talleres">
-    <strong>{{ taller.nombre }}</strong> - Categoría: {{ taller.categoria }} - Cupos: {{ taller.cupos }}
-  </li>
-</ul>
+  <div *ngIf="listaTalleres.length === 0" class="alert alert-warning text-center">
+    Cargando eventos...
+  </div>
 
-<ng-template #cargando>
-  <p>Cargando talleres...</p>
-</ng-template>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let taller of listaTalleres">
+      <div class="card h-100 shadow-sm">
+        <img [src]="taller.img" class="card-img-top" [alt]="taller.titulo" style="height: 200px; object-fit: cover;">
+        
+        <div class="card-body">
+          <h5 class="card-title">{{ taller.titulo }}</h5>
+          <p class="card-text">{{ taller.descripcion }}</p>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">📍 <strong>Lugar:</strong> {{ taller.lugar }}</li>
+            <li class="list-group-item">⏰ <strong>Hora:</strong> {{ taller.hora }}</li>
+          </ul>
+        </div>
+        <div class="card-footer bg-white border-top-0">
+          <button class="btn btn-primary w-100">Inscribirme</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

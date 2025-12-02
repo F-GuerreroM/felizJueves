@@ -1,33 +1,54 @@
 import { Component } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { NgIf } from '@angular/common';
-import { RouterLink, Router } from '@angular/router';
+import { CommonModule } from '@angular/common'; 
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { Router, RouterLink } from '@angular/router'; 
 
 @Component({
   selector: 'app-login',
-  standalone: true,
+  standalone: true, 
+  imports: [CommonModule, ReactiveFormsModule, RouterLink], 
   templateUrl: './login.html',
-  imports: [FormsModule, NgIf, RouterLink],
+  styleUrls: ['./login.css']
 })
 export class LoginComponent {
-  usuario = '';
-  clave = '';
-  errorMsg = '';
+  loginForm: FormGroup;
+  errorMsg: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    
+    this.loginForm = this.fb.group({
+      usuario: ['', [Validators.required, Validators.minLength(3)]],
+      clave: ['', [Validators.required]]
+    });
+  }
 
-  onSubmit(form: NgForm) {
-    this.errorMsg = '';
+  
+  get f() { return this.loginForm.controls; }
 
-    if (!form.valid) {
-      this.errorMsg = 'Por favor completa todos los campos correctamente.';
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
       return;
     }
 
-    if (this.usuario === 'otaku' && this.clave === '1234') {
-      this.router.navigate(['/menu']);
-    } else {
-      this.errorMsg = 'Usuario o clave incorrectos';
+    const { usuario, clave } = this.loginForm.value;
+
+    // --- LÓGICA DE REDIRECCIÓN ---
+    
+    // CASO 1: Admin
+    if (usuario === 'admin' && clave === 'admin123') {
+       console.log('Bienvenido Admin');
+       this.router.navigate(['/admin']);
+    } 
+    // CASO 2: Usuario Otaku Normal 
+    else if (clave === '123456') { 
+       console.log('Login exitoso, yendo al menú...');       
+      
+       this.router.navigate(['/menu']); 
+    } 
+    // CASO 3: Error
+    else {
+      this.errorMsg = 'Usuario o contraseña incorrectos.';
     }
   }
 }

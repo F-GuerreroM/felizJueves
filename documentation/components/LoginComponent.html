@@ -61,6 +61,20 @@
                }
                toggleDarkMode(darkModeState);
           </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
                <div class="d-flex">
@@ -85,6 +99,10 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
@@ -104,6 +122,10 @@
         <li class="nav-item">
             <a href="#templateData" class="nav-link"
                 role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
         <li class="nav-item">
             <a href="#tree" class="nav-link"
@@ -153,12 +175,16 @@
             <tr>
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
-                            <code>FormsModule</code>
-                            <code>NgIf</code>
+                            <code>CommonModule</code>
+                            <code>ReactiveFormsModule</code>
                             <code>RouterLink</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./login.css</code></td>
+            </tr>
 
 
 
@@ -191,13 +217,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#clave" >clave</a>
-                            </li>
-                            <li>
                                 <a href="#errorMsg" >errorMsg</a>
                             </li>
                             <li>
-                                <a href="#usuario" >usuario</a>
+                                <a href="#loginForm" >loginForm</a>
                             </li>
                         </ul>
                     </td>
@@ -222,6 +245,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#f" >f</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -232,7 +269,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: Router)</code>
+<code>constructor(fb: FormBuilder, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
@@ -254,6 +291,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                                 <tr>
                                                         <td>router</td>
                                                   
@@ -297,15 +346,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onSubmit(form: NgForm)</code>
+<code>onSubmit()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/app/components/login/login.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/app/components/login/login.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -313,40 +362,10 @@
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>form</td>
-                                            <td>
-                                                        <code>NgForm</code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -357,37 +376,6 @@
     <h3 id="inputs">
         Properties
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="clave"></a>
-                    <span class="name">
-                        <span ><b>clave</b></span>
-                        <a href="#clave"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/login/login.ts:14</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -423,27 +411,22 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="usuario"></a>
+                    <a name="loginForm"></a>
                     <span class="name">
-                        <span ><b>usuario</b></span>
-                        <a href="#usuario"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>loginForm</b></span>
+                        <a href="#loginForm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>    <code>FormGroup</code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/components/login/login.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/components/login/login.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -452,92 +435,146 @@
     </table>
 </section>
 
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="f"></a>
+                        <span class="name"><b>f</b><a href="#f"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>f()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/login/login.ts:26</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { FormsModule, NgForm } from &#x27;@angular/forms&#x27;;
-import { NgIf } from &#x27;@angular/common&#x27;;
-import { RouterLink, Router } from &#x27;@angular/router&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;; // Necesario para *ngIf
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;; // Necesario para formularios
+import { Router, RouterLink } from &#x27;@angular/router&#x27;; // Necesario para navegar y usar routerLink
 
 @Component({
   selector: &#x27;app-login&#x27;,
-  standalone: true,
+  standalone: true, // &lt;--- Esto indica que es componente Standalone
+  imports: [CommonModule, ReactiveFormsModule, RouterLink], // &lt;--- AQUÍ se importan las librerías
   templateUrl: &#x27;./login.html&#x27;,
-  imports: [FormsModule, NgIf, RouterLink],
+  styleUrls: [&#x27;./login.css&#x27;]
 })
 export class LoginComponent {
-  usuario &#x3D; &#x27;&#x27;;
-  clave &#x3D; &#x27;&#x27;;
-  errorMsg &#x3D; &#x27;&#x27;;
+  loginForm: FormGroup;
+  errorMsg: string &#x3D; &#x27;&#x27;;
 
-  constructor(private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    // Configuración del formulario reactivo
+    this.loginForm &#x3D; this.fb.group({
+      usuario: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
+      clave: [&#x27;&#x27;, [Validators.required]]
+    });
+  }
 
-  onSubmit(form: NgForm) {
-    this.errorMsg &#x3D; &#x27;&#x27;;
+  // Helper para acceder rápido a los controles en el HTML
+  get f() { return this.loginForm.controls; }
 
-    if (!form.valid) {
-      this.errorMsg &#x3D; &#x27;Por favor completa todos los campos correctamente.&#x27;;
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
       return;
     }
 
-    if (this.usuario &#x3D;&#x3D;&#x3D; &#x27;otaku&#x27; &amp;&amp; this.clave &#x3D;&#x3D;&#x3D; &#x27;1234&#x27;) {
-      this.router.navigate([&#x27;/menu&#x27;]);
-    } else {
-      this.errorMsg &#x3D; &#x27;Usuario o clave incorrectos&#x27;;
+    const { usuario, clave } &#x3D; this.loginForm.value;
+
+    // --- LÓGICA DE REDIRECCIÓN ---
+    
+    // CASO 1: Admin
+    if (usuario &#x3D;&#x3D;&#x3D; &#x27;admin&#x27; &amp;&amp; clave &#x3D;&#x3D;&#x3D; &#x27;admin123&#x27;) {
+       console.log(&#x27;Bienvenido Admin&#x27;);
+       this.router.navigate([&#x27;/admin&#x27;]);
+    } 
+    // CASO 2: Usuario Otaku Normal 
+    else if (clave &#x3D;&#x3D;&#x3D; &#x27;123456&#x27;) { 
+       console.log(&#x27;Login exitoso, yendo al menú...&#x27;);       
+      
+       this.router.navigate([&#x27;/menu&#x27;]); 
+    } 
+    // CASO 3: Error
+    else {
+      this.errorMsg &#x3D; &#x27;Usuario o contraseña incorrectos.&#x27;;
     }
   }
-}
-</code></pre>
+}</code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;login-container bg-light p-4 rounded shadow mx-auto&quot; style&#x3D;&quot;max-width: 400px;&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;login-container bg-light p-4 rounded shadow mx-auto mt-5&quot; style&#x3D;&quot;max-width: 400px;&quot;&gt;
   &lt;h2 class&#x3D;&quot;text-center mb-4&quot;&gt;Iniciar Sesión&lt;/h2&gt;
-  &lt;form #loginForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;onSubmit(loginForm)&quot; novalidate&gt;
-    &lt;label for&#x3D;&quot;usuario&quot; class&#x3D;&quot;form-label&quot;&gt;Usuario:&lt;/label&gt;
-    &lt;input
-      type&#x3D;&quot;text&quot;
-      id&#x3D;&quot;usuario&quot;
-      name&#x3D;&quot;usuario&quot;
-      class&#x3D;&quot;form-control&quot;
-      [(ngModel)]&#x3D;&quot;usuario&quot;
-      required
-      minlength&#x3D;&quot;3&quot;
-      #usuarioInput&#x3D;&quot;ngModel&quot;
-    /&gt;
-    &lt;div *ngIf&#x3D;&quot;usuarioInput.invalid &amp;&amp; usuarioInput.touched&quot; class&#x3D;&quot;text-danger small&quot;&gt;
-      El usuario es obligatorio y debe tener al menos 3 caracteres.
+  
+  &lt;form [formGroup]&#x3D;&quot;loginForm&quot; (ngSubmit)&#x3D;&quot;onSubmit()&quot;&gt;
+    
+    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+      &lt;label for&#x3D;&quot;usuario&quot; class&#x3D;&quot;form-label&quot;&gt;Usuario:&lt;/label&gt;
+      &lt;input 
+        type&#x3D;&quot;text&quot; 
+        id&#x3D;&quot;usuario&quot; 
+        class&#x3D;&quot;form-control&quot;
+        formControlName&#x3D;&quot;usuario&quot; 
+        [class.is-invalid]&#x3D;&quot;f[&#x27;usuario&#x27;].invalid &amp;&amp; f[&#x27;usuario&#x27;].touched&quot;
+      /&gt;
+      &lt;div *ngIf&#x3D;&quot;f[&#x27;usuario&#x27;].invalid &amp;&amp; f[&#x27;usuario&#x27;].touched&quot; class&#x3D;&quot;text-danger small&quot;&gt;
+        &lt;div *ngIf&#x3D;&quot;f[&#x27;usuario&#x27;].errors?.[&#x27;required&#x27;]&quot;&gt;El usuario es obligatorio.&lt;/div&gt;
+        &lt;div *ngIf&#x3D;&quot;f[&#x27;usuario&#x27;].errors?.[&#x27;minlength&#x27;]&quot;&gt;Mínimo 3 caracteres.&lt;/div&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
 
-    &lt;label for&#x3D;&quot;clave&quot; class&#x3D;&quot;form-label mt-3&quot;&gt;Contraseña:&lt;/label&gt;
-    &lt;input
-      type&#x3D;&quot;password&quot;
-      id&#x3D;&quot;clave&quot;
-      name&#x3D;&quot;clave&quot;
-      class&#x3D;&quot;form-control&quot;
-      [(ngModel)]&#x3D;&quot;clave&quot;
-      required
-      #claveInput&#x3D;&quot;ngModel&quot;
-    /&gt;
-    &lt;div *ngIf&#x3D;&quot;claveInput.invalid &amp;&amp; claveInput.touched&quot; class&#x3D;&quot;text-danger small&quot;&gt;
-      La contraseña es obligatoria.
+    &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+      &lt;label for&#x3D;&quot;clave&quot; class&#x3D;&quot;form-label&quot;&gt;Contraseña:&lt;/label&gt;
+      &lt;input 
+        type&#x3D;&quot;password&quot; 
+        id&#x3D;&quot;clave&quot; 
+        class&#x3D;&quot;form-control&quot;
+        formControlName&#x3D;&quot;clave&quot;
+        [class.is-invalid]&#x3D;&quot;f[&#x27;clave&#x27;].invalid &amp;&amp; f[&#x27;clave&#x27;].touched&quot;
+      /&gt;
+      &lt;div *ngIf&#x3D;&quot;f[&#x27;clave&#x27;].invalid &amp;&amp; f[&#x27;clave&#x27;].touched&quot; class&#x3D;&quot;text-danger small&quot;&gt;
+        La contraseña es obligatoria.
+      &lt;/div&gt;
     &lt;/div&gt;
 
     &lt;div *ngIf&#x3D;&quot;errorMsg&quot; class&#x3D;&quot;alert alert-danger mt-3&quot;&gt;{{ errorMsg }}&lt;/div&gt;
 
     &lt;button type&#x3D;&quot;submit&quot; class&#x3D;&quot;btn btn-primary w-100 mt-4&quot; [disabled]&#x3D;&quot;loginForm.invalid&quot;&gt;Entrar&lt;/button&gt;
 
-     &lt;p class&#x3D;&quot;mt-3 text-center&quot;&gt;
+    &lt;p class&#x3D;&quot;mt-3 text-center&quot;&gt;
       &lt;a routerLink&#x3D;&quot;/recupera&quot;&gt;¿Olvidaste tu contraseña?&lt;/a&gt;&lt;br&gt;
       &lt;a routerLink&#x3D;&quot;/registro&quot;&gt;¿No tienes cuenta? Regístrate aquí&lt;/a&gt;
     &lt;/p&gt;
   &lt;/form&gt;
-&lt;/div&gt;
-</code></pre>
+&lt;/div&gt;</code></pre>
     </div>
 
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./login.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
 
     <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
@@ -560,12 +597,12 @@ export class LoginComponent {
     
 </div>
 
-<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/vis-network.min.js"></script>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="login-container bg-light p-4 rounded shadow mx-auto" style="max-width: 400px;">  <h2 class="text-center mb-4">Iniciar Sesión</h2>  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" novalidate>    <label for="usuario" class="form-label">Usuario:</label>    <input      type="text"      id="usuario"      name="usuario"      class="form-control"      [(ngModel)]="usuario"      required      minlength="3"      #usuarioInput="ngModel"    />    <div *ngIf="usuarioInput.invalid && usuarioInput.touched" class="text-danger small">      El usuario es obligatorio y debe tener al menos 3 caracteres.    </div>    <label for="clave" class="form-label mt-3">Contraseña:</label>    <input      type="password"      id="clave"      name="clave"      class="form-control"      [(ngModel)]="clave"      required      #claveInput="ngModel"    />    <div *ngIf="claveInput.invalid && claveInput.touched" class="text-danger small">      La contraseña es obligatoria.    </div>    <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{ errorMsg }}</div>    <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="loginForm.invalid">Entrar</button>     <p class="mt-3 text-center">      <a routerLink="/recupera">¿Olvidaste tu contraseña?</a><br>      <a routerLink="/registro">¿No tienes cuenta? Regístrate aquí</a>    </p>  </form></div></div>'
-    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'RecuperaComponent', 'selector': 'app-recupera'},{'name': 'RegistroComponent', 'selector': 'app-registro'}];
+        var COMPONENT_TEMPLATE = '<div><div class="login-container bg-light p-4 rounded shadow mx-auto mt-5" style="max-width: 400px;">  <h2 class="text-center mb-4">Iniciar Sesión</h2>    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">        <div class="mb-3">      <label for="usuario" class="form-label">Usuario:</label>      <input         type="text"         id="usuario"         class="form-control"        formControlName="usuario"         [class.is-invalid]="f[\'usuario\'].invalid && f[\'usuario\'].touched"      />      <div *ngIf="f[\'usuario\'].invalid && f[\'usuario\'].touched" class="text-danger small">        <div *ngIf="f[\'usuario\'].errors?.[\'required\']">El usuario es obligatorio.</div>        <div *ngIf="f[\'usuario\'].errors?.[\'minlength\']">Mínimo 3 caracteres.</div>      </div>    </div>    <div class="mb-3">      <label for="clave" class="form-label">Contraseña:</label>      <input         type="password"         id="clave"         class="form-control"        formControlName="clave"        [class.is-invalid]="f[\'clave\'].invalid && f[\'clave\'].touched"      />      <div *ngIf="f[\'clave\'].invalid && f[\'clave\'].touched" class="text-danger small">        La contraseña es obligatoria.      </div>    </div>    <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{ errorMsg }}</div>    <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="loginForm.invalid">Entrar</button>    <p class="mt-3 text-center">      <a routerLink="/recupera">¿Olvidaste tu contraseña?</a><br>      <a routerLink="/registro">¿No tienes cuenta? Regístrate aquí</a>    </p>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'App', 'selector': 'app-root'},{'name': 'Footer', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MenuComponent', 'selector': 'app-menu'},{'name': 'PerfilComponent', 'selector': 'app-perfil'},{'name': 'RecoverComponent', 'selector': 'app-recover'},{'name': 'RecuperaComponent', 'selector': 'app-recupera'},{'name': 'RegistroComponent', 'selector': 'app-registro'},{'name': 'TalleresComponent', 'selector': 'app-talleres'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'LoginComponent'};
 </script>

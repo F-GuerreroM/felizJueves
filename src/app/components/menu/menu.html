@@ -5,29 +5,17 @@
 </div>
 
 <main class="categorias container mt-4">
-  <section>
-    <img src="assets/img/reuniones.png" class="img-small" alt="Reuniones Otaku" />
-    <h2><a routerLink="/talleres">Reuniones</a></h2>
-    <p>Participa en juntas con otros fans de anime y manga en tu ciudad</p>
+  
+  <section *ngFor="let item of secciones">
+    
+    <img [src]="item.img" class="img-small" [alt]="item.alt" />
+    
+    <h2>
+      <a [routerLink]="item.link">{{ item.titulo }}</a>
+    </h2>
+    
+    <p>{{ item.desc }}</p>
+
   </section>
-  <section>
-    <img src="assets/img/ventas.png" class="img-small" alt="Ventas de Productos">
-    <h2><a routerLink="/ventas">Ventas</a></h2>
-    <p>Encuentra figuras, merch, mangas y productos únicos</p>
-  </section>
-  <section>
-    <img src="assets/img/cosplay.jpg" class="img-small" alt="Cosplay">
-    <h2><a routerLink="/cosplays">Cosplays</a></h2>
-    <p>Comparte tus creaciones y encuentra inspiración en la comunidad</p>
-  </section>
-  <section>
-    <img src="assets/img/tcg.webp" class="img-small" alt="TCG - Juegos de Cartas">
-    <h2><a routerLink="/tcg">Ligas TCG</a></h2>
-    <p>Únete a torneos de cartas como Pokémon, Yu-Gi-Oh!, y más</p>
-  </section>
-  <section>
-    <img src="assets/img/intercambios.jpg" class="img-small" alt="Intercambios y más">
-    <h2><a routerLink="/intercambios">Intercambios y más</a></h2>
-    <p>Participa en actividades de intercambio, sorteos, desafíos y más eventos</p>
-  </section>
+
 </main>
