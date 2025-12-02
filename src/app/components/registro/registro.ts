@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Para *ngIf
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'; // <--- LO QUE PIDE LA PAUTA
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -14,11 +14,11 @@ export class RegistroComponent {
   registroForm: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) {
-    // Definición del Formulario Reactivo con todas las validaciones
+    
     this.registroForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]], // Valida formato email
-      // Regex compleja: Mayúscula, minúscula, número, caracter especial, 8-20 chars
+      email: ['', [Validators.required, Validators.email]], 
+      
       clave: ['', [
         Validators.required, 
         Validators.minLength(8),
@@ -29,10 +29,10 @@ export class RegistroComponent {
     }, { validators: this.passwordMatchValidator });
   }
 
-  // Getter para usar 'f.nombre' en el HTML más fácil
+  
   get f() { return this.registroForm.controls; }
 
-  // Validador personalizado para que coincidan las claves
+  
   passwordMatchValidator(form: AbstractControl) {
     return form.get('clave')?.value === form.get('confirmClave')?.value 
       ? null : { mismatch: true };
@@ -40,23 +40,22 @@ export class RegistroComponent {
 
   onSubmit() {
     if (this.registroForm.invalid) {
-      return; // Si no es válido, no hace nada (los mensajes ya se muestran en HTML)
+      return; 
     }
 
-    // 1. Obtener los datos del formulario
+    
     const nuevoUsuario = {
-      id: Date.now(), // Generamos un ID único basado en la fecha
+      id: Date.now(), 
       nombre: this.registroForm.value.nombre,
       email: this.registroForm.value.email,
-      rol: 'Usuario' // Por defecto todos son usuarios normales
+      rol: 'Usuario' 
     };
 
-    // 2. "PASADO DE DATOS": Guardar en localStorage para que el Admin lo vea
-    // Primero leemos si ya hay usuarios guardados
+   
     const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios') || '[]');
-    // Agregamos el nuevo
+   
     usuariosGuardados.push(nuevoUsuario);
-    // Guardamos la lista actualizada
+    
     localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
 
     alert('¡Registro exitoso! Ahora puedes iniciar sesión.');

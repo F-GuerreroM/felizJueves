@@ -430,15 +430,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Inject, PLATFORM_ID } from &#x27;@angular/core&#x27;;
-import { CommonModule, isPlatformBrowser } from &#x27;@angular/common&#x27;; // Importante para *ngFor y evitar errores
-import { RouterLink } from &#x27;@angular/router&#x27;; // Para el botón de &quot;Volver&quot;
+import { CommonModule, isPlatformBrowser } from &#x27;@angular/common&#x27;; 
+import { RouterLink } from &#x27;@angular/router&#x27;; 
 
 @Component({
   selector: &#x27;app-talleres&#x27;,
   standalone: true,
   imports: [CommonModule, RouterLink], 
   templateUrl: &#x27;./talleres.component.html&#x27;,
-  styleUrls: [&#x27;./talleres.component.css&#x27;] // Si tienes CSS específico
+  styleUrls: [&#x27;./talleres.component.css&#x27;] 
 })
 export class TalleresComponent implements OnInit {
   listaTalleres: any[] &#x3D; [];
@@ -446,14 +446,14 @@ export class TalleresComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    // Solo cargamos los datos si estamos en el navegador
+    
     if (isPlatformBrowser(this.platformId)) {
       this.cargarDatos();
     }
   }
 
 cargarDatos() {
-    // CAMBIO AQUÍ: Agrega &#x27;/data/&#x27; a la ruta para que coincida con tu archivo
+    
     fetch(&#x27;assets/data/talleres.json&#x27;) 
       .then(response &#x3D;&gt; {
         if (!response.ok) {

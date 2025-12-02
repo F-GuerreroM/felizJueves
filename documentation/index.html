@@ -13,7 +13,8 @@
     </head>
     <body>
           <script>
-               
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
                var useDark = window.matchMedia('(prefers-color-scheme: dark)');
                var darkModeState = useDark.matches;
                var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');

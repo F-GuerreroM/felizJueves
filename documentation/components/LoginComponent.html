@@ -467,14 +467,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { CommonModule } from &#x27;@angular/common&#x27;; // Necesario para *ngIf
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;; // Necesario para formularios
-import { Router, RouterLink } from &#x27;@angular/router&#x27;; // Necesario para navegar y usar routerLink
+import { CommonModule } from &#x27;@angular/common&#x27;; 
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;; 
+import { Router, RouterLink } from &#x27;@angular/router&#x27;; 
 
 @Component({
   selector: &#x27;app-login&#x27;,
-  standalone: true, // &lt;--- Esto indica que es componente Standalone
-  imports: [CommonModule, ReactiveFormsModule, RouterLink], // &lt;--- AQUÍ se importan las librerías
+  standalone: true, 
+  imports: [CommonModule, ReactiveFormsModule, RouterLink], 
   templateUrl: &#x27;./login.html&#x27;,
   styleUrls: [&#x27;./login.css&#x27;]
 })
@@ -483,14 +483,14 @@ export class LoginComponent {
   errorMsg: string &#x3D; &#x27;&#x27;;
 
   constructor(private fb: FormBuilder, private router: Router) {
-    // Configuración del formulario reactivo
+    
     this.loginForm &#x3D; this.fb.group({
       usuario: [&#x27;&#x27;, [Validators.required, Validators.minLength(3)]],
       clave: [&#x27;&#x27;, [Validators.required]]
     });
   }
 
-  // Helper para acceder rápido a los controles en el HTML
+  
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
