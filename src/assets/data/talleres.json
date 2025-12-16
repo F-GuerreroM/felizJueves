@@ -27,4 +27,12 @@
     "hora": "Jueves 17:30 hrs",
     "img": "assets/img/ventas.png"
   }
+  ,
+    {
+    "titulo": "Taller de Cosplay: Armaduras",
+    "descripcion": "Aprende a trabajar con goma eva y pintura para tus props.",
+    "lugar": "Centro Cultural Sala 2",
+    "hora": "Domingo 10:00 hrs",
+    "img": "assets/img/cosplay.jpg"
+  },
 ]
