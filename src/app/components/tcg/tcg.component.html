@@ -1,0 +1,45 @@
+<div class="container mt-4 mb-5">
+  
+  <div class="text-center mb-5">
+    <h2 class="fw-bold mb-3">📺 Animes del Momento</h2>
+    <p class="text-muted">Top series populares desde API Jikan (MyAnimeList)</p>
+    
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <a routerLink="/menu" class="btn btn-outline-secondary">⬅ Volver al Menú</a>
+      
+      <a href="https://myanimelist.net/" target="_blank" class="btn btn-primary fw-bold">
+        👤 Ir a Mi Perfil (MyAnimeList)
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="cargando" class="text-center py-5">
+    <div class="spinner-border text-danger" role="status"></div>
+    <p class="mt-2 text-muted">Cargando datos...</p>
+  </div>
+
+  <div class="row g-3" *ngIf="!cargando">
+    <div class="col-6 col-md-3 col-lg-2" *ngFor="let anime of animes">
+      <div class="card h-100 border-0 shadow-sm hover-zoom">
+        <img [src]="anime.images.jpg.image_url" class="card-img-top" [alt]="anime.title" 
+             style="height: 250px; object-fit: cover;">
+        <div class="card-body p-2 text-center bg-white">
+          <h6 class="card-title small fw-bold mb-1 text-truncate">{{ anime.title }}</h6>
+          <span class="badge bg-warning text-dark mb-1">⭐ {{ anime.score }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hover-zoom { 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  .hover-zoom:hover { 
+    transform: scale(1.05); 
+    z-index: 10; 
+    cursor: pointer;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+</style>

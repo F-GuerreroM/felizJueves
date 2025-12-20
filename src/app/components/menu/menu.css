@@ -1,19 +1,23 @@
-/* Ejemplo basado en tus clases */
-.overlay-text {
-  /* Tus estilos del banner */
-  margin-bottom: 2rem;
+/* Sección Hero (Encabezado) */
+.hero-section {
+    background-image: url('../../../assets/img/fondo-header.png');
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    margin-top: -1.5rem; /* Ajuste para pegar al navbar si es necesario */
 }
 
-.img-small {
-  /* El tamaño que querías para las imágenes */
-  max-width: 150px; /* Ajusta según tu diseño original */
-  height: auto;
-  display: block;
-  margin: 0 auto;
+/* Efecto de elevación en las tarjetas */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-section {
-  text-align: center;
-  margin-bottom: 2rem;
-  /* Otros estilos de tu sección */
+.hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    cursor: pointer;
+}
+
+.card-title {
+    color: #333;
 }

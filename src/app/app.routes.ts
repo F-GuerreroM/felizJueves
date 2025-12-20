@@ -6,6 +6,7 @@ import { RegistroComponent } from './components/registro/registro';
 import { AdminComponent } from './components/admin/admin';
 import { RecoverComponent } from './components/recover/recover';
 import { PerfilComponent } from './components/perfil/perfil';
+import { TcgComponent } from './components/tcg/tcg.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -15,7 +16,9 @@ export const routes: Routes = [
   { path: 'talleres', component: TalleresComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'recupera', component: RecoverComponent }, 
-  { path: 'perfil', component: PerfilComponent },    
+  { path: 'perfil', component: PerfilComponent },
+  { path: 'tcg', component: TcgComponent },
+      
   
   { path: '**', redirectTo: 'login' }
 ];

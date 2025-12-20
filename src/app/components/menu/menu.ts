@@ -13,39 +13,25 @@ export class MenuComponent {
   
   secciones = [
     { 
-      titulo: 'Reuniones', 
+      titulo: 'Gestión de Reuniones', 
       link: '/talleres', 
+      esExterno: false, 
       img: 'assets/img/reuniones.png', 
-      alt: 'Reuniones Otaku', 
-      desc: 'Participa en juntas con otros fans de anime y manga en tu ciudad' 
+      desc: 'Consulta, crea y administra las juntas de la comunidad en tu ciudad.' 
     },
     { 
-      titulo: 'Ventas', 
-      link: '/ventas', 
-      img: 'assets/img/ventas.png', 
-      alt: 'Ventas de Productos', 
-      desc: 'Encuentra figuras, merch, mangas y productos únicos' 
+      titulo: 'Organizar en RRSS', 
+      link: 'https://www.facebook.com/events/create/', 
+      esExterno: true, 
+      img: 'assets/img/intercambios.jpg',
+      desc: 'Crea un evento oficial en Facebook para invitar a más personas.' 
     },
     { 
-      titulo: 'Cosplays', 
-      link: '/cosplays', 
-      img: 'assets/img/cosplay.jpg', 
-      alt: 'Cosplay', 
-      desc: 'Comparte tus creaciones y encuentra inspiración en la comunidad' 
-    },
-    { 
-      titulo: 'Ligas TCG', 
-      link: '/tcg', 
+      titulo: 'Top Animes', 
+      link: '/tcg',  
+      esExterno: false,
       img: 'assets/img/tcg.webp', 
-      alt: 'TCG - Juegos de Cartas', 
-      desc: 'Únete a torneos de cartas como Pokémon, Yu-Gi-Oh!, y más' 
-    },
-    { 
-      titulo: 'Intercambios y más', 
-      link: '/intercambios', 
-      img: 'assets/img/intercambios.jpg', 
-      alt: 'Intercambios y más', 
-      desc: 'Participa en actividades de intercambio, sorteos, desafíos y más eventos' 
+      desc: 'Animes populares del momento.' 
     }
   ];
 }

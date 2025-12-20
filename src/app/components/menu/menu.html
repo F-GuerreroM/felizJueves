@@ -1,21 +1,37 @@
-<div class="overlay-text mx-auto text-center">
-  <h1>¡Feliz Jueves!</h1>
-  <p class="lead">Tu página por otakus para otakus</p>
-  <p class="fst-italic">Reuniones, cosplays, ventas, TCG, y más</p>
+<div class="hero-section text-center text-white d-flex align-items-center justify-content-center mb-5">
+  <div class="bg-dark bg-opacity-75 p-4 rounded shadow">
+    <h1 class="display-3 fw-bold text-warning">¡Feliz Jueves!</h1>
+    <p class="lead">Tu comunidad Otaku: Eventos, Juegos y Más.</p>
+  </div>
 </div>
 
-<main class="categorias container mt-4">
+<main class="container mb-5">
   
-  <section *ngFor="let item of secciones">
+  <div class="row g-4 justify-content-center">
     
-    <img [src]="item.img" class="img-small" [alt]="item.alt" />
-    
-    <h2>
-      <a [routerLink]="item.link">{{ item.titulo }}</a>
-    </h2>
-    
-    <p>{{ item.desc }}</p>
+    <div class="col-md-4" *ngFor="let item of secciones">
+      <div class="card h-100 shadow border-0 hover-card">
+        
+        <img [src]="item.img" class="card-img-top" [alt]="item.titulo" 
+             style="height: 220px; object-fit: cover;">
+        
+        <div class="card-body text-center d-flex flex-column">
+          <h3 class="card-title fw-bold mb-3">{{ item.titulo }}</h3>
+          <p class="card-text text-muted mb-4">{{ item.desc }}</p>
+          
+          <div class="mt-auto">
+            <a *ngIf="!item.esExterno" [routerLink]="item.link" class="btn btn-primary w-100 py-2">
+              Entrar 🚀
+            </a>
+            
+            <a *ngIf="item.esExterno" [href]="item.link" target="_blank" class="btn btn-outline-dark w-100 py-2">
+              Ir al Sitio 🌐
+            </a>
+          </div>
+        </div>
 
-  </section>
+      </div>
+    </div>
 
+  </div>
 </main>
